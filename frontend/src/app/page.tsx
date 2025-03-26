@@ -48,27 +48,113 @@ export default function Home() {
   };
 
   return (
-    <div>
-      <h1>Item List</h1>
-      <input
-        type="text"
-        value={newTitle}
-        onChange={(e) => setNewTitle(e.target.value)}
-      />
-      <input
-        type="text"
-        value={newPhoto}
-        onChange={(e) => setNewPhoto(e.target.value)}
-      />
-      <button onClick={createItem}>Add Item</button>
-      <ul>
+    <div style={styles.container}>
+      <h1 style={styles.heading}>Item List</h1>
+      <div style={styles.inputContainer}>
+        <input
+          type="text"
+          placeholder="Title"
+          value={newTitle}
+          onChange={(e) => setNewTitle(e.target.value)}
+          style={styles.input}
+        />
+        <input
+          type="text"
+          placeholder="Photo URL"
+          value={newPhoto}
+          onChange={(e) => setNewPhoto(e.target.value)}
+          style={styles.input}
+        />
+        <button onClick={createItem} style={styles.addButton}>
+          Add Item
+        </button>
+      </div>
+      <ul style={styles.list}>
         {items.map((item) => (
-          <li key={item.id}>
-            <div><img src={item.photo}></img>{item.title}</div>
-            <div><button onClick={() => deleteItem(item.id)}>Delete</button></div>
+          <li key={item.id} style={styles.listItem}>
+            <div style={styles.itemInfo}>
+              <img src={item.photo} alt={item.title} style={styles.itemImage} />
+              <span style={styles.itemTitle}>{item.title}</span>
+            </div>
+            <button onClick={() => deleteItem(item.id)} style={styles.deleteButton}>
+              Delete
+            </button>
           </li>
         ))}
       </ul>
     </div>
   );
 }
+
+const styles = {
+  container: {
+    fontFamily: 'Arial, sans-serif',
+    maxWidth: '600px',
+    margin: '20px auto',
+    padding: '20px',
+    border: '1px solid #ccc',
+    borderRadius: '8px',
+    backgroundColor: '#f9f9f9',
+  },
+  heading: {
+    // textAlign: 'center',
+    marginBottom: '20px',
+    color: '#333',
+  },
+  inputContainer: {
+    display: 'flex',
+    gap: '10px',
+    marginBottom: '20px',
+  },
+  input: {
+    flexGrow: 1,
+    padding: '10px',
+    border: '1px solid #ddd',
+    borderRadius: '4px',
+    fontSize: '16px',
+  },
+  addButton: {
+    padding: '10px 15px',
+    backgroundColor: '#007bff',
+    color: 'white',
+    border: 'none',
+    borderRadius: '4px',
+    cursor: 'pointer',
+    fontSize: '16px',
+  },
+  list: {
+    listStyle: 'none',
+    padding: 0,
+  },
+  listItem: {
+    display: 'flex',
+    justifyContent: 'space-between',
+    alignItems: 'center',
+    padding: '10px',
+    borderBottom: '1px solid #eee',
+  },
+  itemInfo: {
+    display: 'flex',
+    alignItems: 'center',
+    gap: '10px',
+  },
+  itemImage: {
+    width: '50px',
+    height: '50px',
+    // objectFit: 'cover',
+    borderRadius: '4px',
+  },
+  itemTitle: {
+    fontSize: '16px',
+    color: '#555',
+  },
+  deleteButton: {
+    backgroundColor: '#dc3545',
+    color: 'white',
+    border: 'none',
+    borderRadius: '4px',
+    padding: '8px 12px',
+    cursor: 'pointer',
+    fontSize: '14px',
+  },
+};
