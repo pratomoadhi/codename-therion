@@ -1,82 +1,62 @@
-// pages/index.js
 'use client';
 import { useState, useEffect } from 'react';
-import axios from 'axios';
-
-interface Item {
-  id: number;
-  title: string;
-  photo: string;
-}
+import { fetchItems, createItem, deleteItem, Item } from '@/lib/api';
+import styles from '@/styles/Home.module.css';
 
 export default function Home() {
   const [items, setItems] = useState<Item[]>([]);
-  const [newTitle, setNewTitle] = useState<string>('');
-  const [newPhoto, setNewPhoto] = useState<string>('');
+  const [newTitle, setNewTitle] = useState('');
+  const [newPhoto, setNewPhoto] = useState('');
 
   useEffect(() => {
-    fetchItems();
+    loadItems();
   }, []);
 
-  const fetchItems = async () => {
-    try {
-      const response = await axios.get<Item[]>('http://localhost:3000/items');
-      setItems(response.data);
-    } catch (error) {
-      console.error('Error fetching items:', error);
-    }
+  const loadItems = async () => {
+    const data = await fetchItems();
+    setItems(data);
   };
 
-  const createItem = async () => {
-    try {
-      await axios.post('http://localhost:3000/items', { title: newTitle, photo: newPhoto });
-      setNewTitle('');
-      setNewPhoto('');
-      fetchItems();
-    } catch (error) {
-      console.error('Error creating item:', error);
-    }
+  const handleCreate = async () => {
+    if (!newTitle || !newPhoto) return;
+    const newItem = await createItem(newTitle, newPhoto);
+    if (newItem) setItems((prev) => [...prev, newItem]);
+    setNewTitle('');
+    setNewPhoto('');
   };
 
-  const deleteItem = async (id: number) => {
-    try {
-      await axios.delete(`http://localhost:3000/items/${id}`);
-      fetchItems();
-    } catch (error) {
-      console.error('Error deleting item:', error);
+  const handleDelete = async (id: number) => {
+    if (await deleteItem(id)) {
+      setItems((prev) => prev.filter(item => item.id !== id));
     }
   };
 
   return (
-    <div style={styles.container}>
-      <h1 style={styles.heading}>Item List</h1>
-      <div style={styles.inputContainer}>
+    <div className={styles.container}>
+      <h1 className={styles.heading}>📸 Gallery</h1>
+      <div className={styles.inputContainer}>
         <input
           type="text"
           placeholder="Title"
           value={newTitle}
           onChange={(e) => setNewTitle(e.target.value)}
-          style={styles.input}
+          className={styles.input}
         />
         <input
           type="text"
           placeholder="Photo URL"
           value={newPhoto}
           onChange={(e) => setNewPhoto(e.target.value)}
-          style={styles.input}
+          className={styles.input}
         />
-        <button onClick={createItem} style={styles.addButton}>
-          Add Item
-        </button>
+        <button onClick={handleCreate} className={styles.addButton}>Add Item</button>
       </div>
-      <ul style={styles.list}>
+      <ul className={styles.list}>
         {items.map((item) => (
-          <li key={item.id} style={styles.listItem}>
-            <div style={styles.itemInfo}>
-              <img src={item.photo} alt={item.title} style={styles.itemImage} />
-              <span style={styles.itemTitle}>{item.title}</span>
-            </div>
-            <button onClick={() => deleteItem(item.id)} style={styles.deleteButton}>
+          <li key={item.id} className={styles.card}>
+            <img src={item.photo} alt={item.title} className={styles.itemImage} />
+            <span className={styles.itemTitle}>{item.title}</span>
+            <button onClick={() => handleDelete(item.id)} className={styles.deleteButton}>
               Delete
             </button>
           </li>
@@ -85,76 +65,3 @@ export default function Home() {
     </div>
   );
 }
-
-const styles = {
-  container: {
-    fontFamily: 'Arial, sans-serif',
-    maxWidth: '600px',
-    margin: '20px auto',
-    padding: '20px',
-    border: '1px solid #ccc',
-    borderRadius: '8px',
-    backgroundColor: '#f9f9f9',
-  },
-  heading: {
-    // textAlign: 'center',
-    marginBottom: '20px',
-    color: '#333',
-  },
-  inputContainer: {
-    display: 'flex',
-    gap: '10px',
-    marginBottom: '20px',
-  },
-  input: {
-    flexGrow: 1,
-    padding: '10px',
-    border: '1px solid #ddd',
-    borderRadius: '4px',
-    fontSize: '16px',
-  },
-  addButton: {
-    padding: '10px 15px',
-    backgroundColor: '#007bff',
-    color: 'white',
-    border: 'none',
-    borderRadius: '4px',
-    cursor: 'pointer',
-    fontSize: '16px',
-  },
-  list: {
-    listStyle: 'none',
-    padding: 0,
-  },
-  listItem: {
-    display: 'flex',
-    justifyContent: 'space-between',
-    alignItems: 'center',
-    padding: '10px',
-    borderBottom: '1px solid #eee',
-  },
-  itemInfo: {
-    display: 'flex',
-    alignItems: 'center',
-    gap: '10px',
-  },
-  itemImage: {
-    width: '50px',
-    height: '50px',
-    // objectFit: 'cover',
-    borderRadius: '4px',
-  },
-  itemTitle: {
-    fontSize: '16px',
-    color: '#555',
-  },
-  deleteButton: {
-    backgroundColor: '#dc3545',
-    color: 'white',
-    border: 'none',
-    borderRadius: '4px',
-    padding: '8px 12px',
-    cursor: 'pointer',
-    fontSize: '14px',
-  },
-};

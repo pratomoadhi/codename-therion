@@ -1,0 +1,141 @@
+/* 🎨 Stylish Background */
+body {
+    background: linear-gradient(135deg, #f5f7fa, #c3cfe2);
+    font-family: 'Poppins', sans-serif;
+}
+
+/* 🎭 Gallery Container */
+.container {
+    max-width: 900px;
+    margin: 40px auto;
+    padding: 20px;
+    text-align: center;
+}
+
+/* 🌟 Heading */
+.heading {
+    font-size: 28px;
+    color: #222;
+    font-weight: bold;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    gap: 8px;
+}
+
+/* 📸 Grid Layout */
+.list {
+    display: grid;
+    grid-template-columns: repeat(auto-fill, minmax(200px, 1fr));
+    gap: 20px;
+    padding: 0;
+    justify-content: center;
+}
+
+/* 💎 Glassmorphism Card */
+.card {
+    background: rgba(255, 255, 255, 0.3);
+    backdrop-filter: blur(10px);
+    border-radius: 16px;
+    padding: 15px;
+    text-align: center;
+    box-shadow: 0 6px 12px rgba(0, 0, 0, 0.1);
+    transition: 0.3s ease-in-out;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: space-between;
+    height: 320px;
+    /* Taller card */
+    width: 200px;
+    border: 1px solid rgba(255, 255, 255, 0.2);
+}
+
+.card:hover {
+    transform: translateY(-5px);
+    box-shadow: 0 8px 16px rgba(0, 0, 0, 0.15);
+}
+
+/* 🖼️ Portrait Image */
+.itemImage {
+    width: 100%;
+    height: 250px; /* Fixed height for uniformity */
+    object-fit: cover; /* Ensures all images are properly cropped */
+    border-radius: 12px;
+    transition: 0.3s;
+}
+
+.itemImage:hover {
+    transform: scale(1.05);
+}
+
+/* 🎨 Item Title */
+.itemTitle {
+    font-size: 14px;
+    color: #333;
+    font-weight: 600;
+    text-align: center;
+    word-wrap: break-word;
+    margin-top: 8px;
+}
+
+/* ❌ Delete Button */
+.deleteButton {
+    background-color: rgba(220, 53, 69, 0.8);
+    color: white;
+    border: none;
+    border-radius: 8px;
+    padding: 6px 12px;
+    cursor: pointer;
+    font-size: 14px;
+    margin-top: 8px;
+    transition: 0.3s;
+}
+
+.deleteButton:hover {
+    background-color: rgba(167, 29, 42, 0.9);
+    transform: scale(1.1);
+}
+
+/* 🎨 Add Item Section */
+.inputContainer {
+    display: flex;
+    gap: 12px;
+    margin-bottom: 20px;
+    justify-content: center;
+}
+
+.input {
+    flex-grow: 1;
+    padding: 12px;
+    border: none;
+    border-radius: 8px;
+    font-size: 16px;
+    background: rgba(255, 255, 255, 0.6);
+    backdrop-filter: blur(10px);
+    transition: 0.3s;
+}
+
+.input:focus {
+    background: rgba(255, 255, 255, 0.9);
+    outline: none;
+    box-shadow: 0 0 5px rgba(0, 123, 255, 0.5);
+}
+
+/* ➕ Add Button */
+.addButton {
+    padding: 12px 18px;
+    background: linear-gradient(135deg, #007bff, #0056b3);
+    color: white;
+    border: none;
+    border-radius: 8px;
+    cursor: pointer;
+    font-size: 16px;
+    font-weight: bold;
+    transition: 0.3s;
+}
+
+.addButton:hover {
+    background: linear-gradient(135deg, #0056b3, #004494);
+    transform: scale(1.1);
+}
