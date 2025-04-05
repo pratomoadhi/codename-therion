@@ -40,11 +40,15 @@ Make sure Docker and Docker Compose are installed.
 
 Build the containers:
 
-docker-compose build
+   ```sh
+   docker-compose build
+   ```
 
 Start the app:
 
-docker-compose up -d
+   ```sh
+   docker-compose up -d
+   ```
 
 Open the frontend at http://localhost:3030 and the backend API at http://localhost:3000.
 
