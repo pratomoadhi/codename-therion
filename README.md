@@ -32,8 +32,25 @@ A **full-stack web application** built with **Next.js (frontend)** and **Nest.js
    npm install  
    npm run dev  
    ```
-4. Open the app at `http://localhost:3000`.  
+4. Open the app at `http://localhost:3001`.  
 
-## 🐜 License  
-MIT License.  
+🚧 Docker Setup
+
+Make sure Docker and Docker Compose are installed.
+
+Build the containers:
+
+docker-compose build
+
+Start the app:
+
+docker-compose up -d
+
+Open the frontend at http://localhost:3030 and the backend API at http://localhost:3000.
+
+Note: SQLite is used by default. You can configure PostgreSQL for production by updating environment variables and the database config.
+
+🐜 License
+
+MIT License.
 

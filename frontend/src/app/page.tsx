@@ -32,36 +32,38 @@ export default function Home() {
   };
 
   return (
-    <div className={styles.container}>
-      <h1 className={styles.heading}>📸 Gallery</h1>
-      <div className={styles.inputContainer}>
-        <input
-          type="text"
-          placeholder="Title"
-          value={newTitle}
-          onChange={(e) => setNewTitle(e.target.value)}
-          className={styles.input}
-        />
-        <input
-          type="text"
-          placeholder="Photo URL"
-          value={newPhoto}
-          onChange={(e) => setNewPhoto(e.target.value)}
-          className={styles.input}
-        />
-        <button onClick={handleCreate} className={styles.addButton}>Add Item</button>
+    <div className={styles.wrapper}>
+      <div className={styles.container}>
+        <h1 className={styles.heading}>📸 Gallery</h1>
+        <div className={styles.inputContainer}>
+          <input
+            type="text"
+            placeholder="Name"
+            value={newTitle}
+            onChange={(e) => setNewTitle(e.target.value)}
+            className={styles.input}
+          />
+          <input
+            type="text"
+            placeholder="Photo URL"
+            value={newPhoto}
+            onChange={(e) => setNewPhoto(e.target.value)}
+            className={styles.input}
+          />
+          <button onClick={handleCreate} className={styles.addButton}>Add Item</button>
+        </div>
+        <ul className={styles.list}>
+          {items.map((item) => (
+            <li key={item.id} className={styles.card}>
+              <img src={item.photo} alt={item.title} className={styles.itemImage} />
+              <span className={styles.itemTitle}>{item.title}</span>
+              <button onClick={() => handleDelete(item.id)} className={styles.deleteButton}>
+                Delete
+              </button>
+            </li>
+          ))}
+        </ul>
       </div>
-      <ul className={styles.list}>
-        {items.map((item) => (
-          <li key={item.id} className={styles.card}>
-            <img src={item.photo} alt={item.title} className={styles.itemImage} />
-            <span className={styles.itemTitle}>{item.title}</span>
-            <button onClick={() => handleDelete(item.id)} className={styles.deleteButton}>
-              Delete
-            </button>
-          </li>
-        ))}
-      </ul>
     </div>
   );
 }

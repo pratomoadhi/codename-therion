@@ -1,18 +1,14 @@
-# Use official Node.js image
 FROM node:18-alpine
 
-# Set working directory
 WORKDIR /app
 
-# Copy package.json and install dependencies
-COPY package.json package-lock.json ./
+COPY package*.json ./
 RUN npm install
 
-# Copy the rest of the application
 COPY . .
 
-# Expose the port Nest.js runs on
-EXPOSE 3001
+RUN npm run build
 
-# Start the Nest.js application
-CMD ["npm", "run", "start"]
+EXPOSE 3000
+
+CMD ["npm", "run", "start:dev"]
