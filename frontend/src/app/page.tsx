@@ -32,10 +32,11 @@ export default function Home() {
   };
 
   return (
-    <div className={styles.wrapper}>
-      <div className={styles.container}>
+    <main className={styles.wrapper}>
+      <section className={styles.container}>
         <h1 className={styles.heading}>📸 Gallery</h1>
-        <div className={styles.inputContainer}>
+
+        <div className={styles.inputSection}>
           <input
             type="text"
             placeholder="Name"
@@ -50,12 +51,15 @@ export default function Home() {
             onChange={(e) => setNewPhoto(e.target.value)}
             className={styles.input}
           />
-          <button onClick={handleCreate} className={styles.addButton}>Add Item</button>
+          <button onClick={handleCreate} className={styles.addButton}>Add</button>
         </div>
-        <ul className={styles.list}>
+
+        <ul className={styles.grid}>
           {items.map((item) => (
             <li key={item.id} className={styles.card}>
-              <img src={item.photo} alt={item.title} className={styles.itemImage} />
+              <div className={styles.imageWrapper}>
+                <img src={item.photo} alt={item.title} className={styles.itemImage} />
+              </div>
               <span className={styles.itemTitle}>{item.title}</span>
               <button onClick={() => handleDelete(item.id)} className={styles.deleteButton}>
                 Delete
@@ -63,7 +67,7 @@ export default function Home() {
             </li>
           ))}
         </ul>
-      </div>
-    </div>
+      </section>
+    </main>
   );
 }
