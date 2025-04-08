@@ -48,7 +48,7 @@ Start the app:
    docker-compose up -d
    ```
 
-Open the frontend at http://localhost:3030 and the backend API at http://localhost:3000.
+Open the frontend at http://localhost:8080 and the backend API at http://localhost:8000.
 
 Note: SQLite is used by default. You can configure PostgreSQL for production by updating environment variables and the database config.
 

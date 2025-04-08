@@ -1,6 +1,6 @@
 import axios from 'axios';
 
-const API_BASE_URL = 'http://localhost:3000/items'; // Update if needed
+const API_BASE_URL = 'http://localhost:8000/items'; // Update if needed
 
 export interface Item {
   id: number;
