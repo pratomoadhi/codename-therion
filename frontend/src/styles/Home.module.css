@@ -142,3 +142,148 @@
     background-color: #c82333;
     transform: scale(1.05);
 }
+
+/* Toggle buttons */
+.iconToggle {
+    display: flex;
+    align-items: center;
+    gap: 8px;
+    margin-left: 10px;
+}
+
+.iconButton,
+.activeIcon {
+    background: transparent;
+    border: 2px solid #ccc;
+    color: #555;
+    padding: 8px;
+    border-radius: 6px;
+    cursor: pointer;
+    font-size: 18px;
+    transition: 0.3s;
+}
+
+.activeIcon {
+    border-color: #007bff;
+    background-color: #007bff;
+    color: white;
+}
+
+.iconButton:hover {
+    border-color: #007bff;
+    color: #007bff;
+}
+
+/* List layout */
+.list {
+    list-style: none;
+    padding: 0;
+    display: flex;
+    flex-direction: column;
+    gap: 12px;
+}
+
+.rowItem {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    background: rgba(255, 255, 255, 0.6);
+    padding: 10px 20px;
+    border-radius: 10px;
+    box-shadow: 0 2px 8px rgba(0, 0, 0, 0.05);
+}
+
+.rowText {
+    font-size: 16px;
+    font-weight: 500;
+    color: #333;
+}
+
+.rowActions {
+    display: flex;
+    gap: 10px;
+    align-items: center;
+}
+
+.viewButton {
+    background-color: #28a745;
+    color: #fff;
+    padding: 8px 12px;
+    border-radius: 8px;
+    text-decoration: none;
+    font-size: 14px;
+    transition: 0.2s;
+}
+
+.viewButton:hover {
+    background-color: #218838;
+    transform: scale(1.05);
+}
+
+/* 🌙 Dark mode overrides */
+.darkMode {
+    background: linear-gradient(to bottom right, #111827, #1f2937);
+}
+
+.darkMode .heading {
+    color: #f9fafb;
+}
+
+.darkMode .input {
+    background-color: #374151cc;
+    color: #f9fafb;
+    border-color: #555;
+}
+
+.darkMode .input:focus {
+    border-color: #60a5fa;
+    box-shadow: 0 0 0 3px rgba(96, 165, 250, 0.3);
+}
+
+.darkMode .addButton {
+    background: linear-gradient(135deg, #3b82f6, #1e40af);
+}
+
+.darkMode .addButton:hover {
+    background: linear-gradient(135deg, #1e40af, #1e3a8a);
+}
+
+.darkMode .card,
+.darkMode .rowItem {
+    background: rgba(55, 65, 81, 0.6);
+    border-color: #4b5563;
+    color: #f9fafb;
+}
+
+.darkMode .itemTitle,
+.darkMode .rowText {
+    color: #f9fafb;
+}
+
+.darkMode .deleteButton {
+    background-color: #ef4444;
+}
+
+.darkMode .deleteButton:hover {
+    background-color: #dc2626;
+}
+
+.darkMode .viewButton {
+    background-color: #10b981;
+}
+
+.darkMode .viewButton:hover {
+    background-color: #059669;
+}
+
+.darkMode .iconButton,
+.darkMode .activeIcon {
+    border-color: #4b5563;
+    color: #f9fafb;
+}
+
+.darkMode .activeIcon {
+    background-color: #3b82f6;
+    border-color: #3b82f6;
+    color: white;
+}

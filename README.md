@@ -20,19 +20,27 @@ A **full-stack web application** built with **Next.js (frontend)** and **Nest.js
    git clone https://github.com/pratomoadhi/codename-therion.git
    cd codename-therion
    ```
-2. Start the backend:  
+2. Copy and modify backend .env:
    ```sh
    cd backend  
-   npm install  
-   npm run start  
+   cp .env.example .env
    ```
-3. Start the frontend:  
+3. Start the backend:  
+   ```sh
+   npm install  
+   npm run start:dev
+   ```
+4. Copy and modify backend .env:
    ```sh
    cd ../frontend  
+   cp .env.local.example .env.local
+   ```
+5. Start the frontend:  
+   ```sh
    npm install  
    npm run dev  
    ```
-4. Open the app at `http://localhost:3001`.  
+6. Open the app at `http://localhost:3001`.  
 
 ## 🐳 Docker Setup
 

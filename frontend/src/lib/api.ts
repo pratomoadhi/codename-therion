@@ -1,6 +1,8 @@
 import axios from 'axios';
 
-const API_BASE_URL = 'http://localhost:8000/items'; // Update if needed
+// const API_BASE_URL = 'http://localhost:8000/items'; // Update if needed
+const API_BASE_URL = process.env.NEXT_PUBLIC_API_URL || 'http://localhost:3000';
+const API_URL = API_BASE_URL + '/items';
 
 export interface Item {
   id: number;
@@ -11,7 +13,7 @@ export interface Item {
 /* 🚀 Fetch All Items */
 export const fetchItems = async (): Promise<Item[]> => {
   try {
-    const response = await axios.get<Item[]>(API_BASE_URL);
+    const response = await axios.get<Item[]>(API_URL);
     return response.data;
   } catch (error) {
     console.error('Error fetching items:', error);
@@ -22,7 +24,7 @@ export const fetchItems = async (): Promise<Item[]> => {
 /* ➕ Create New Item */
 export const createItem = async (title: string, photo: string): Promise<Item | null> => {
   try {
-    const response = await axios.post<Item>(API_BASE_URL, { title, photo });
+    const response = await axios.post<Item>(API_URL, { title, photo });
     return response.data;
   } catch (error) {
     console.error('Error creating item:', error);
@@ -33,7 +35,7 @@ export const createItem = async (title: string, photo: string): Promise<Item | n
 /* ❌ Delete Item */
 export const deleteItem = async (id: number): Promise<boolean> => {
   try {
-    await axios.delete(`${API_BASE_URL}/${id}`);
+    await axios.delete(`${API_URL}/${id}`);
     return true;
   } catch (error) {
     console.error('Error deleting item:', error);
